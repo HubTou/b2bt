@@ -128,9 +128,9 @@ To mitigate the risks, the utility will:
 * Warn you if you are using a privileged account and advise you not to do so.
 * Show you every command to be executed and ask for prior confirmation.
 
-We also use the standard Python xml.dom.minidom library which is known to be vulnerable to several XML attacks.
+We also use the standard Python [xml.dom.minidom](https://docs.python.org/3/library/xml.dom.minidom.html) library which is known to be vulnerable to several XML attacks.
 
 Visual inspection of the XML files to process is recommended, and useful anyway if you are rewriting an existing command.
 
 The program is using MD5 file digests but not for security purposes.
-It is also calling the what(1) and ident(1) commands from their PATH location, if they are available.
+It is also calling the [what(1)](https://www.freebsd.org/cgi/man.cgi?query=what) and [ident(1)](https://www.freebsd.org/cgi/man.cgi?query=ident) commands from their PATH location, if they are available.
