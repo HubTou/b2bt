@@ -53,7 +53,7 @@ By defaut, this utility:
 * does not execute again tests when you have kept previous results, unless you use the **-f** option to overwrite them;
 * asks for confirmation before each test case execution, unless you use the **-y** option to auto confirm them;
 * uses ANSI colours in the output, unless you use the **-N** option to disable it;
-* does not execute the new command if it has the same MD5 digest than the original one.
+* does not execute the new command if it has the same [MD5](https://en.wikipedia.org/wiki/MD5) digest than the original one.
 
 The new command location has to be specified with the -n option if you want a comparison to occur.
 
