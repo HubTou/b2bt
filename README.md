@@ -45,14 +45,14 @@ In a test suite it is possible to specify:
 Each test case can have a name and a potential timeout (in seconds or fraction of seconds).
 
 By defaut, this utility:
-* executes the original command, unless you use the -s option to skip it (useful when you are testing the new command on another system);
-* executes the original command from the PATH, unless you use the -o option to specify another location;
-* uses a 120.0 s timeout for commands execution, unless you use the -t option to modify it;
-* discards the test results after each comparison, unless you use the -k option to keep them;
-* details the differences between the 2 commands runs, unless you use the -q option to limit it;
-* does not execute again tests when you have kept previous results, unless you use the -f option to overwrite them;
-* asks for confirmation before each test case execution, unless you use the -y option to auto confirm them;
-* uses ANSI colours in the output, unless you use the -N option to disable it;
+* executes the original command, unless you use the **-s** option to skip it (useful when you are testing the new command on another system);
+* executes the original command from the PATH, unless you use the **-o** option to specify another location;
+* uses a 120.0 s timeout for commands execution, unless you use the **-t** option to modify it;
+* discards the test results after each comparison, unless you use the **-k** option to keep them;
+* details the differences between the 2 commands runs, unless you use the **-q** option to limit it;
+* does not execute again tests when you have kept previous results, unless you use the **-f** option to overwrite them;
+* asks for confirmation before each test case execution, unless you use the **-y** option to auto confirm them;
+* uses ANSI colours in the output, unless you use the **-N** option to disable it;
 * does not execute the new command if it has the same MD5 digest than the original one.
 
 The new command location has to be specified with the -n option if you want a comparison to occur.
@@ -94,7 +94,7 @@ The format of the XML files processed is described in the b2bt(5) manual page.
 The b2bt utility exits 0 on success, and >0 if an error occurs.
 
 ## SEE ALSO
-[b2bt(5)](https://github.com/HubTou/b2bt/README.5.md)
+[b2bt(5)](https://github.com/HubTou/b2bt/blob/main/README.5.md)
 
 ## STANDARDS
 The b2bt utility is not a standard UNIX/POSIX command.
