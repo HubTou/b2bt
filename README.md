@@ -85,10 +85,10 @@ The B2BT_OPTIONS environment variable can be set with a combination of the follo
 
 The B2BT_DEBUG environment variable can also be set to any value to enable debug mode.
 
-These 2 environement variables are superseded by command line options.
+These 2 environment variables are superseded by command line options.
 
 ## FILES
-The format of the XML files processed is described in the b2bt(5) manual page.
+The format of the XML files processed is described in the [b2bt(5)](https://github.com/HubTou/b2bt/blob/main/README.5.md) manual page.
 
 ## EXIT STATUS
 The b2bt utility exits 0 on success, and >0 if an error occurs.
@@ -115,10 +115,10 @@ This utility is available under the [3-clause BSD license](https://opensource.or
 [Hubert Tournier](https://github.com/HubTou)
 
 ## CAVEATS
-If you are comparing commands execution across operating systems, for example between Unix-like and Windows,
+If you are comparing commands execution across operating systems, for example between Unix-like and Windows systems,
 the output might be different due to the path separators ("/" versus "\').
 
-Comparing timeout interrupted commands output is not guaranteed...
+Comparing timeout interrupted commands output is hazardous...
 
 ## SECURITY CONSIDERATIONS
 This utility processes XML files describing commands to be shell executed on your system.
@@ -128,9 +128,9 @@ To mitigate the risks, the utility will:
 * Warn you if you are using a privileged account and advise you not to do so.
 * Show you every command to be executed and ask for prior confirmation.
 
-We also use the standard Python [xml.dom.minidom](https://docs.python.org/3/library/xml.dom.minidom.html) library which is known to be vulnerable to several XML attacks.
+We also use the standard Python [xml.dom.minidom](https://docs.python.org/3/library/xml.dom.minidom.html) library which is known to be [vulnerable to several XML attacks](https://pypi.org/project/defusedxml/).
 
 Visual inspection of the XML files to process is recommended, and useful anyway if you are rewriting an existing command.
 
 The program is using MD5 file digests but not for security purposes.
-It is also calling the [what(1)](https://www.freebsd.org/cgi/man.cgi?query=what) and [ident(1)](https://www.freebsd.org/cgi/man.cgi?query=ident) commands from their PATH location, if they are available.
+It is also calling the [what(1)](https://www.freebsd.org/cgi/man.cgi?query=what) and [ident(1)](https://www.freebsd.org/cgi/man.cgi?query=ident) commands from their PATH location, if they are available, assuming system directories precede user directories in the PATH.
