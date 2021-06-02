@@ -116,7 +116,7 @@ This utility is available under the [3-clause BSD license](https://opensource.or
 
 ## CAVEATS
 If you are comparing commands execution across operating systems, for example between Unix-like and Windows systems,
-the output might be different due to the path separators ("/" versus "\').
+the output might be different due to the path separators ("/" versus "\\").
 
 Comparing timeout interrupted commands output is hazardous...
 
