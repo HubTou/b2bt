@@ -94,7 +94,9 @@ The format of the XML files processed is described in the [b2bt(5)](https://gith
 The b2bt utility exits 0 on success, and >0 if an error occurs.
 
 ## SEE ALSO
-[b2bt(5)](https://github.com/HubTou/b2bt/blob/main/README.5.md)
+[b2bt(5)](https://github.com/HubTou/b2bt/blob/main/README.5.md),
+[what(1)](https://www.freebsd.org/cgi/man.cgi?query=what),
+[ident(1)](https://www.freebsd.org/cgi/man.cgi?query=ident)
 
 ## STANDARDS
 The b2bt utility is not a standard UNIX/POSIX command.
