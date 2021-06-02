@@ -25,28 +25,28 @@ In a test suite it is possible to specify:
 Each test case can have a name and a potential timeout (in seconds or fraction of seconds).
 
 A b2bt XML file starts with a line indicating the XML version we use:
-'''xml
+```XML
 <?xml version="1.0"?>
-'''
+```
 
 Then, all the rest of the file is enclosed between 1 test-suite pair of tags: 
-'''XML
+```XML
 <test-suite program="COMMAND" processor="b2bt" ID="@(#) $Id: COMMAND.xml - back to back test suite for COMMAND v1.0.0 (DATE) by AUTHOR $">
 </test-suite>
-'''
+```
 Where:
 * **COMMAND** is the name of the command to be tested
 * **DATE** is the date of last modification to the file
 * **AUTHOR** is the test suite author's name
 
 You can then have 1 or more test-cases enclosed between test-case pair of tags:
-'''XML
+```XML
 <test-case name="CASE_NAME" timeout="TIMEOUT">
   <cmd>
     COMMAND
   </cmd>
 </test-case>
-'''
+```
 Where:
 * The **name** attribute is optional but recommended. If you don't provide it, the test will be referred to by its order rank in the file (starting at 1)
 * The **timeout**" attribute is optional and it's recommended NOT to use it, unless you have a good reason. It takes a positive value, with an eventual decimal part, expressed in seconds. Whatever the Locale you are using, the decimal separator is the "." character
@@ -57,7 +57,7 @@ Where:
   * the command is executed by a Shell. Its output can be piped to another command or redirected to a file, and it can be prefixed by environment variables definition
 
 Apart from the mandatory **cmd** tags, a test-case can also include the following optional tags:
-'''XML
+```XML
 <test-case name="CASE_NAME" timeout="TIMEOUT">
   <pre>
     PRE_COMMANDS
@@ -72,7 +72,7 @@ Apart from the mandatory **cmd** tags, a test-case can also include the followin
     POST_COMMANDS
   </post> 
 </test-case>
-'''
+```
 Where:
 * **PRE_COMMANDS** is 0 to N lines of commands to be shell executed before the command to be tested:
   * These commands are independent from each other. This is not a shell script! Peculiarly, you can't use "here documents" or environment variables definition affecting succeeding lines...
@@ -85,19 +85,19 @@ Where:
 ## EXAMPLES
 
 A minimal test suite would be:
-'''XML
+```XML
 <?xml version="1.0"?>
-<test-suite program="cat" processor="b2bt" ID="@(#) $Id: cat.xml - back to back test suite for cat v1.0.0 (May 30, 2021) by Hubert Tournier $">
+<test-suite program="basename" processor="b2bt" ID="@(#) $Id: basename.xml - back to back test suite for basename v1.0.0 (May 30, 2021) by Hubert Tournier $">
   <test-case name="Concatenate 2 files">
     <cmd>
       basename /directory1/directory2/file1.ext .ext
     </cmd>
   </test-case>
 </test-suite>
-'''
+```
 
 Other more sophisticated test suite would be:
-'''XML
+```XML
 <?xml version="1.0"?>
 <test-suite program="cat" processor="b2bt" ID="@(#) $Id: cat.xml - back to back test suite for cat v1.0.0 (May 30, 2021) by Hubert Tournier $">
   <test-case name="Concatenate 2 files">
@@ -128,7 +128,7 @@ Other more sophisticated test suite would be:
     </cmd>
   </test-case>
 </test-suite>
-'''
+```
 
 ## SEE ALSO
 [b2bt(1)](https://github.com/HubTou/b2bt/blob/main/README.md)
