@@ -96,7 +96,7 @@ A minimal test suite would be:
 </test-suite>
 ```
 
-Other more sophisticated test suite would be:
+Another more sophisticated test suite would be:
 ```XML
 <?xml version="1.0"?>
 <test-suite program="cat" processor="b2bt" ID="@(#) $Id: cat.xml - back to back test suite for cat v1.0.0 (May 30, 2021) by Hubert Tournier $">
