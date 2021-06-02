@@ -49,7 +49,7 @@ You can then have 1 or more test-cases enclosed between test-case pair of tags:
 ```
 Where:
 * The **name** attribute is optional but recommended. If you don't provide it, the test will be referred to by its order rank in the file (starting at 1)
-* The **timeout**" attribute is optional and it's recommended NOT to use it, unless you have a good reason. It takes a positive value, with an eventual decimal part, expressed in seconds. Whatever the Locale you are using, the decimal separator is the "." character
+* The **timeout** attribute is optional and it's recommended NOT to use it, unless you have a good reason to do so. It takes a positive value, with an eventual decimal part, expressed in seconds. Whatever the Locale you are using, the decimal separator is the "." character
 * **CASE_NAME** is a short string describing the case
 * **COMMAND** is the command to be shell executed:
   * the **cmd** tag expects exactly one line. Preceding or trailing spaces and newline characters are stripped
