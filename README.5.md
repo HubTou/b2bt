@@ -52,7 +52,7 @@ Where:
 * The **timeout** attribute is optional and it's recommended NOT to use it, unless you have a good reason to do so. It takes a positive value, with an eventual decimal part, expressed in seconds. Whatever the Locale you are using, the decimal separator is the "." character
 * **CASE_NAME** is a short string describing the test case
 * **COMMAND** is the command to be shell executed:
-  * the **cmd** tag expects exactly one line. Preceding or trailing spaces and newline characters are stripped
+  * the **cmd** tag expects exactly one line. Leading or trailing spaces and newline characters are stripped
   * the command itself must be pathless. b2bt will replace the first occurrence it founds with the absolute path of the original or new command to be tested
   * the command is executed by a Shell. Its output can be piped to another command or redirected to a file, and it can be prefixed by environment variables definition
 
@@ -80,7 +80,7 @@ Where:
 * **POST_COMMANDS** does the same, except its commands are executed after the command to be tested and their output is collected for later comparisons:
   * This section is intended to check additional effects of the command tested, for example in terms of files/directories creation/modification/deletion, execution duration, etc.
   * The temporary directory where the test happens will automatically be cleaned, and this doesn't need to be addressed by the user
-* **INPUT_LINES** is 0 to N lines of text to be injected as standard input to the command to be tested. Again, preceding or trailing spaces and newline characters are stripped
+* **INPUT_LINES** is 0 to N lines of text to be injected as standard input into the command to be tested. Again, leading or trailing spaces and newline characters are stripped
 
 
 ## EXAMPLES
