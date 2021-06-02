@@ -78,7 +78,7 @@ Where:
   * These commands are independent from each other. This is not a shell script! Peculiarly, you can't use "here documents" or environment variables definition affecting succeeding lines...
   * This section is intended to create any files or directories with associated content needed for the test case. It will be executed twice, for the original and the new command, so that each one runs in a fresh environment
 * **POST_COMMANDS** does the same, except its commands are executed after the command to be tested and their output is collected for later comparisons:
-  * This section is intended to check additional effects of the command tested, for example in terms of files/directories creation/modification, execution duration, etc.
+  * This section is intended to check additional effects of the command tested, for example in terms of files/directories creation/modification/deletion, execution duration, etc.
   * The temporary directory where the test happens will automatically be cleaned, and this doesn't need to be addressed by the user
 * **INPUT_LINES** is 0 to N lines of text to be injected as standard input to the command to be tested. Again, preceding or trailing spaces and newline characters are stripped
 
@@ -88,7 +88,7 @@ A minimal test suite would be:
 ```XML
 <?xml version="1.0"?>
 <test-suite program="basename" processor="b2bt" ID="@(#) $Id: basename.xml - back to back test suite for basename v1.0.0 (May 30, 2021) by Hubert Tournier $">
-  <test-case name="Concatenate 2 files">
+  <test-case name="Typical usage - removing directories and file extension">
     <cmd>
       basename /directory1/directory2/file1.ext .ext
     </cmd>
@@ -117,7 +117,7 @@ Other more sophisticated test suite would be:
     </post>
   </test-case>
 
-  <test-case name="Use standard input">
+  <test-case name="Basic filter - process standard input">
     <stdin>
       a
       b
