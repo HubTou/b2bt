@@ -25,7 +25,7 @@ In a test suite it is possible to specify:
 Each test case can have a name and a potential timeout (in seconds or fraction of seconds).
 
 A b2bt XML file starts with a line indicating the XML version we use:
-'''XML
+'''xml
 <?xml version="1.0"?>
 '''
 
