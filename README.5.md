@@ -137,8 +137,10 @@ Other more sophisticated test suite would be:
 These files were made for [The PNU project / PyNIX](https://github.com/HubTou/PNU)
 in order to test the rewritten commands against the installed ones.
 
-This project will provide b2bt test files for the usual POSIX and FreeBSD commands.
+This project will provide [b2bt test files for the usual POSIX and FreeBSD commands](https://github.com/HubTou/PNU/tree/main/tests).
 
 ## AUTHORS
 [Hubert Tournier](https://github.com/HubTou)
 
+## CAVEATS
+A way to introduce leading or trailing spaces in tag contents has yet to be provided.
