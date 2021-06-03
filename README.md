@@ -136,3 +136,4 @@ Visual inspection of the XML files to process is recommended, and useful anyway 
 
 The program is using MD5 file digests but not for security purposes.
 It is also calling the [what(1)](https://www.freebsd.org/cgi/man.cgi?query=what) and [ident(1)](https://www.freebsd.org/cgi/man.cgi?query=ident) commands from their PATH location, if they are available, assuming system directories precede user directories in the PATH.
+
