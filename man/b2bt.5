@@ -159,8 +159,8 @@ Another more sophisticated test suite would be:
 <test-suite program="cat" processor="b2bt" ID="@(#) $Id: cat.xml - back to back test suite for cat v1.0.0 (May 30, 2021) by Hubert Tournier $">
   <test-case name="Concatenate 2 files">
     <pre>
-      printf "%s\n%s\n%s\n" a b c > 1
-      printf "%s\n%s\n%s\n" d e f > 2
+      printf "%s\\n%s\\n%s\\n" a b c > 1
+      printf "%s\\n%s\\n%s\\n" d e f > 2
     </pre>
     <cmd>
       cat 1 2
