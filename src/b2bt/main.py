@@ -29,7 +29,7 @@ except ModuleNotFoundError:
     COLORAMA = False
 
 # Version string used by the what(1) and ident(1) commands:
-ID = "@(#) $Id: b2bt - back-to-back testing v1.0.0 (May 30, 2021) by Hubert Tournier $"
+ID = "@(#) $Id: b2bt - back-to-back testing v1.0.1 (June 5, 2021) by Hubert Tournier $"
 
 # Default parameters. Can be overcome by environment variables, then command line options
 DEFAULT_TIMEOUT = 120.0
@@ -174,14 +174,14 @@ def process_command_line():
 
         elif option in ("-n", "--newpath"):
             if os.path.isdir(argument):
-                parameters["New command path"] = argument
+                parameters["New command path"] = os.path.abspath(argument)
             else:
                 logging.critical("-n|--newpath argument is not a path")
                 sys.exit(1)
 
         elif option in ("-o", "--origpath"):
             if os.path.isdir(argument):
-                parameters["Original command path"] = argument
+                parameters["Original command path"] = os.path.abspath(argument)
             else:
                 logging.critical("-o|--origpath argument is not a path")
                 sys.exit(1)

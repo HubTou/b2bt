@@ -28,10 +28,11 @@ The **b2bt** utility aims to automate:
 * back-to-back testing (testing a command-line utility against another implementation)
 * non regression testing (testing a command-line utility against a previous version)
 
-It processes one or more [XML](https://en.wikipedia.org/wiki/XML) files describing the test suite for a command-line utility,
-with its different test cases, execute the 2 commands versions and report potential
-differences (on return codes, standard output, standard error output, plus custom post
-processing output in order to check other kind of impacts, on file systems, execution time, etc.).
+It processes one or more [XML](https://en.wikipedia.org/wiki/XML) files describing the test suite
+for a command-line utility, with its different test cases, executing the 2 commands versions and
+reporting potential differences (on return codes, standard output, standard error output, plus
+custom post processing output in order to check other kind of impacts, on file systems, execution
+time, etc.) for each test case.
 
 In a test suite it is possible to specify:
 * optional shell commands to execute before the test, typically to setup the test environment
