@@ -31,13 +31,15 @@ A b2bt XML file starts with a line indicating the XML version we use:
 
 Then, all the rest of the file is enclosed between 1 test-suite pair of tags: 
 ```XML
-<test-suite program="COMMAND" processor="b2bt" ID="@(#) $Id: COMMAND.xml - back to back test suite for COMMAND v1.0.0 (DATE) by AUTHOR $">
+<test-suite program="COMMAND" processor="b2bt B2BT_VERSION" ID="@(#) $Id: COMMAND.xml - back to back test suite for COMMAND vVERSION (DATE) by AUTHOR $">
 </test-suite>
 ```
 Where:
 * **COMMAND** is the name of the command to be tested
+* **VERSION** is the version of the test suite
 * **DATE** is the date of last modification to the file
 * **AUTHOR** is the test suite author's name
+* **B2BT_VERSION** is the minimal version required of **b2bt** required to process this file, or 1.0.x if missing
 
 You can then have 1 or more test-cases enclosed between test-case pair of tags:
 ```XML
@@ -55,6 +57,13 @@ Where:
   * the **cmd** tag expects exactly one line. Leading or trailing spaces and newline characters are stripped
   * the command itself must be pathless. b2bt will replace the first occurrence it founds with the absolute path of the original or new command to be tested
   * the command is executed by a Shell. Its output can be piped to another command or redirected to a file, and it can be prefixed by environment variables definition
+* There are 2 characters that you must escape in all XML tag contents:
+  * The ampersand (&) is to be replaced by &amp;amp;
+  * The "less than" operator (<) is to be replaced by &amp;lt;
+* Also remember that, at least, the [predefined XML entities](https://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references#Predefined_entities_in_XML) will be replaced in your tag contents. The 2 previous ones, plus:
+  * &amp;quot; for the quote (")
+  * &amp;apos; for the apostrophe (')
+  * &amp;gt; for the "greater than" operator (>)
 
 Apart from the mandatory **cmd** tags, a test-case can also include the following optional tags:
 ```XML
@@ -82,6 +91,9 @@ Where:
   * The temporary directory where the test happens will automatically be cleaned, and this doesn't need to be addressed by the user
 * **INPUT_LINES** is 0 to N lines of text to be injected as standard input into the command to be tested. Again, leading or trailing spaces and newline characters are stripped
 
+If you want portable test suites, please make sure that all commands you use
+in the pre, cmd and post sections are available in all the operating systems
+that you target...
 
 ## EXAMPLES
 A minimal test suite would be:
