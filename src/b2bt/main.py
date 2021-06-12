@@ -29,7 +29,7 @@ except ModuleNotFoundError:
     COLORAMA = False
 
 # Version string used by the what(1) and ident(1) commands:
-ID = "@(#) $Id: b2bt - back-to-back testing v1.0.1 (June 5, 2021) by Hubert Tournier $"
+ID = "@(#) $Id: b2bt - back-to-back testing v1.0.2 (June 12, 2021) by Hubert Tournier $"
 
 # Default parameters. Can be overcome by environment variables, then command line options
 DEFAULT_TIMEOUT = 120.0

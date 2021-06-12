@@ -44,7 +44,7 @@ XML file starts with a line indicating the XML version we use:
 .Pp
 Then, all the rest of the file is enclosed between 1 test-suite pair of tags: 
 .Bd -literal
-<test-suite program="COMMAND" processor="b2bt" ID="@(#) $Id: COMMAND.xml - back to back test suite for COMMAND v1.0.0 (DATE) by AUTHOR $">
+<test-suite program="COMMAND" processor="b2bt B2BT_VERSION" ID="@(#) $Id: COMMAND.xml - back to back test suite for COMMAND vVERSION (DATE) by AUTHOR $">
 </test-suite>
 .Ed
 .Pp
@@ -54,11 +54,17 @@ Where:
 .Em COMMAND
 is the name of the command to be tested
 .It
+.Em VERSION
+is the version of the test suite
+.It
 .Em DATE
 is the date of last modification to the file
 .It
 .Em AUTHOR
 is the test suite author's name
+.It
+.Em B2BT_VERSION
+is the minimal version required of **b2bt** required to process this file, or 1.0.x if missing
 .El
 .Pp
 You can then have 1 or more test-cases enclosed between test-case pair of tags:
@@ -95,6 +101,24 @@ tag expects exactly one line. Leading or trailing spaces and newline characters 
 the command itself must be pathless. b2bt will replace the first occurrence it founds with the absolute path of the original or new command to be tested
 .It
 the command is executed by a Shell. Its output can be piped to another command or redirected to a file, and it can be prefixed by environment variables definition
+.El
+.It
+There are 2 characters that you must escape in all XML tag contents:
+.Bl -bullet
+.It
+The ampersand (&) is to be replaced by &amp;
+.It
+The "less than" operator (<) is to be replaced by &lt;
+.El
+.It
+Also remember that, at least, the predefined XML entities will be replaced in your tag contents. The 2 previous ones, plus:
+.Bl -bullet
+.It
+&quot; for the quote (")
+.It
+&apos; for the apostrophe (')
+.It
+&gt; for the "greater than" operator (>)
 .El
 .El
 .Pp
@@ -142,6 +166,9 @@ The temporary directory where the test happens will automatically be cleaned, an
 .Em INPUT_LINES
 is 0 to N lines of text to be injected as standard input into the command to be tested. Again, leading or trailing spaces and newline characters are stripped
 .El
+.Pp
+If you want portable test suites, please make sure that all commands you use
+in the pre, cmd and post sections are available in all the operating systems that you target...
 .Sh EXAMPLES
 A minimal test suite would be:
 .Bd -literal
