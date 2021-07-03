@@ -17,7 +17,9 @@ import shutil
 import subprocess
 import sys
 import time
-import xml.dom.minidom
+
+# Mandatory dependency upon defusedxml
+import defusedxml.minidom
 
 # Optional dependency upon colorama
 # Use "pip install colorama" to install
@@ -29,7 +31,8 @@ except ModuleNotFoundError:
     COLORAMA = False
 
 # Version string used by the what(1) and ident(1) commands:
-ID = "@(#) $Id: b2bt - back-to-back testing v1.0.2 (June 12, 2021) by Hubert Tournier $"
+ID = "@(#) $Id: b2bt - back-to-back testing v1.1.0 (July 3, 2021) by Hubert Tournier $"
+__version__ = "1.1.0"
 
 # Default parameters. Can be overcome by environment variables, then command line options
 DEFAULT_TIMEOUT = 120.0
@@ -251,7 +254,16 @@ def get_tag_lines(xml_node, tag_name):
             if node.nodeType == node.TEXT_NODE:
                 for line in node.data.split(os.linesep):
                     if line.strip():
-                        lines.append(line.strip())
+                        newline = line.strip()
+
+                        # If line starts and ends with quotes, remove them
+                        # but keep spaces inside:
+                        if len(newline) >= 2 \
+                        and newline[0] == '"' \
+                        and newline[-1] == '"':
+                            newline = newline[1:-1]
+
+                        lines.append(newline)
     return lines
 
 
@@ -596,6 +608,45 @@ def color_print(text, color):
 
 
 ################################################################################
+def compute_version(text):
+    """Compute a version number from a version string"""
+    version_parts =  text.split(".")
+    version = 0
+    try:
+        if len(version_parts) >= 1:
+            version = int(version_parts[0]) * 100 * 100
+        if len(version_parts) >= 2:
+            version += int(version_parts[1]) * 100
+        if len(version_parts) == 3:
+            version += int(version_parts[2])
+    except:
+        version = -1
+    return version
+
+
+################################################################################
+def verify_processor(attribute):
+    """Verify if we use the correct program and version to process an XML file"""
+    processor = attribute.strip().split()
+    if processor[0] != "b2bt":
+        return False
+
+    if len(processor) == 1:
+        return True
+    if len(processor) > 2:
+        return False
+
+    version_requested = compute_version(processor[1])
+    current_version = compute_version(__version__)
+
+    if version_requested == -1 or current_version == -1:
+        return False
+    if version_requested > current_version:
+        return False
+    return True
+
+
+################################################################################
 def remind_command(same_command, command):
     """Print the command tested on the first difference encountered"""
     if same_command:
@@ -642,9 +693,9 @@ def main():
             logging.error("'%s' is not a file name", filename)
         else:
             try:
-                test_file = xml.dom.minidom.parse(filename)
-            except xml.parsers.expat.ExpatError as error:
-                logging.critical("XML file error: %s", error)
+                test_file = defusedxml.minidom.parse(filename)
+            except:
+                logging.critical("XML file error")
                 sys.exit(1)
 
             # Get the root element of the document:
@@ -654,7 +705,14 @@ def main():
             program_tested = os.path.basename(filename).replace(".xml", "")
             if test_suite.hasAttribute("program"):
                 program_tested = test_suite.getAttribute("program").strip()
+
             color_print("Testing the '%s' command:" % program_tested, colorama.Style.BRIGHT)
+
+            # Get the processor required for this file and verify if it's OK:
+            if test_suite.hasAttribute("processor"):
+                if not verify_processor(test_suite.getAttribute("processor")):
+                    logging.critical("This test file requires a different or more recent processor")
+                    sys.exit(1)
 
             # Determine if the original command will have to be executed:
             execute_original_command = False
@@ -700,7 +758,8 @@ def main():
             # Get all the test cases in the test suite:
             test_cases = test_suite.getElementsByTagName("test-case")
 
-            # If we are to keep results, note some system information for next time & place we'll make comparisons:
+            # If we are to keep results, note some system information
+            # for next time & place we'll make comparisons:
             original_command_md5 = ""
             new_command_md5 = ""
             if parameters["Keep results"]:

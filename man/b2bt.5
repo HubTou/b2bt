@@ -64,7 +64,7 @@ is the date of last modification to the file
 is the test suite author's name
 .It
 .Em B2BT_VERSION
-is the minimal version required of **b2bt** required to process this file, or 1.0.x if missing
+is the minimal version required of **b2bt** required to process this file, or 1.0.0 if missing
 .El
 .Pp
 You can then have 1 or more test-cases enclosed between test-case pair of tags:
@@ -96,7 +96,7 @@ is the command to be shell executed:
 .It
 the
 .Em cmd
-tag expects exactly one line. Leading or trailing spaces and newline characters are stripped
+tag expects exactly one line. Leading or trailing spaces and newline characters are stripped unless enclosed between double quotes
 .It
 the command itself must be pathless. b2bt will replace the first occurrence it founds with the absolute path of the original or new command to be tested
 .It
@@ -218,8 +218,8 @@ Another more sophisticated test suite would be:
 .Sh SEE ALSO
 .Xr b2bt 1
 .Sh HISTORY
-These files were made for
-.Lk https://github.com/HubTou/PNU [The PNU project / PyNIX]
+These files were made for the
+.Lk https://github.com/HubTou/PNU [PNU project]
 in order to test the rewritten commands against the installed ones.
 .Pp
 This project will provide
@@ -227,5 +227,3 @@ This project will provide
 test files for the usual POSIX and FreeBSD commands.
 .Sh AUTHORS
 .An Hubert Tournier
-.Sh CAVEATS
-A way to introduce leading or trailing spaces in tag contents has yet to be provided.

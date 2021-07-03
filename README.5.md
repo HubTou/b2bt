@@ -39,7 +39,7 @@ Where:
 * **VERSION** is the version of the test suite
 * **DATE** is the date of last modification to the file
 * **AUTHOR** is the test suite author's name
-* **B2BT_VERSION** is the minimal version required of **b2bt** required to process this file, or 1.0.x if missing
+* **B2BT_VERSION** is the minimal version required of **b2bt** required to process this file, or 1.0.0 if missing
 
 You can then have 1 or more test-cases enclosed between test-case pair of tags:
 ```XML
@@ -54,7 +54,7 @@ Where:
 * The **timeout** attribute is optional and it's recommended NOT to use it, unless you have a good reason to do so. It takes a positive value, with an eventual decimal part, expressed in seconds. Whatever the Locale you are using, the decimal separator is the "." character
 * **CASE_NAME** is a short string describing the test case
 * **COMMAND** is the command to be shell executed:
-  * the **cmd** tag expects exactly one line. Leading or trailing spaces and newline characters are stripped
+  * the **cmd** tag expects exactly one line. Leading or trailing spaces and newline characters are stripped unless enclosed between double quotes
   * the command itself must be pathless. b2bt will replace the first occurrence it founds with the absolute path of the original or new command to be tested
   * the command is executed by a Shell. Its output can be piped to another command or redirected to a file, and it can be prefixed by environment variables definition
 * There are 2 characters that you must escape in all XML tag contents:
@@ -146,14 +146,11 @@ Another more sophisticated test suite would be:
 [b2bt(1)](https://github.com/HubTou/b2bt/blob/main/README.md)
 
 ## HISTORY
-These files were made for [The PNU project / PyNIX](https://github.com/HubTou/PNU)
+These files were made for the [PNU project](https://github.com/HubTou/PNU)
 in order to test the rewritten commands against the installed ones.
 
 This project will provide [b2bt test files for the usual POSIX and FreeBSD commands](https://github.com/HubTou/PNU/tree/main/tests).
 
 ## AUTHORS
 [Hubert Tournier](https://github.com/HubTou)
-
-## CAVEATS
-A way to introduce leading or trailing spaces in tag contents has yet to be provided.
 

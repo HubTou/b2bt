@@ -104,11 +104,8 @@ The b2bt utility is not a standard UNIX/POSIX command.
 
 It tries to follow the [PEP 8](https://www.python.org/dev/peps/pep-0008/) style guide for [Python](https://www.python.org/) code.
 
-## PORTABILITY
-To be tested under Windows.
-
 ## HISTORY
-This utility was made for [The PNU project / PyNIX](https://github.com/HubTou/PNU)
+This utility was made for the [PNU project](https://github.com/HubTou/PNU)
 in order to test the rewritten commands against the installed ones.
 
 ## LICENSE
@@ -130,8 +127,6 @@ If you are not the author of a test suite or are using an untrusted source, this
 To mitigate the risks, the utility will:
 * Warn you if you are using a privileged account and advise you not to do so.
 * Show you every command to be executed and ask for prior confirmation.
-
-We also use the standard Python [xml.dom.minidom](https://docs.python.org/3/library/xml.dom.minidom.html) library which is known to be [vulnerable to several XML attacks](https://pypi.org/project/defusedxml/).
 
 Visual inspection of the XML files to process is recommended, and useful anyway if you are rewriting an existing command.
 

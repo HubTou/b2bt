@@ -1,5 +1,5 @@
 bandit -r src/b2bt/__init__.py src/b2bt/main.py
-Run started:2021-06-13 11:24:23.718090
+Run started:2021-07-03 13:43:36.422536
 
 Test results:
 >> Issue: [B404:blacklist] Consider possible security implications associated with subprocess module.
@@ -11,153 +11,132 @@ Test results:
 18	import sys
 
 --------------------------------------------------
->> Issue: [B408:blacklist] Using xml.dom.minidom to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.dom.minidom with the equivalent defusedxml package, or make sure defusedxml.defuse_stdlib() is called.
-   Severity: Low   Confidence: High
-   Location: src/b2bt/main.py:20
-   More Info: https://bandit.readthedocs.io/en/latest/blacklists/blacklist_imports.html#b408-import-xml-minidom
-19	import time
-20	import xml.dom.minidom
-21	
-22	# Optional dependency upon colorama
-23	# Use "pip install colorama" to install
-24	try:
-
---------------------------------------------------
 >> Issue: [B303:blacklist] Use of insecure MD2, MD4, MD5, or SHA1 hash function.
    Severity: Medium   Confidence: High
-   Location: src/b2bt/main.py:313
+   Location: src/b2bt/main.py:325
    More Info: https://bandit.readthedocs.io/en/latest/blacklists/blacklist_calls.html#b303-md5
-312	    chunk_size = 512 * 200
-313	    digest = hashlib.md5()
-314	    with open(file_path, "rb") as file:
+324	    chunk_size = 512 * 200
+325	    digest = hashlib.md5()
+326	    with open(file_path, "rb") as file:
 
 --------------------------------------------------
 >> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
    Severity: Low   Confidence: High
-   Location: src/b2bt/main.py:369
+   Location: src/b2bt/main.py:381
    More Info: https://bandit.readthedocs.io/en/latest/plugins/b607_start_process_with_partial_path.html
-368	        if shutil.which("what"):
-369	            results = subprocess.run(
-370	                ["what", "-q", command_full_path],
-371	                text=True,
-372	                capture_output=True,
-373	                check=False,
-374	            )
+380	        if shutil.which("what"):
+381	            results = subprocess.run(
+382	                ["what", "-q", command_full_path],
+383	                text=True,
+384	                capture_output=True,
+385	                check=False,
+386	            )
 
 --------------------------------------------------
 >> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
    Severity: Low   Confidence: High
-   Location: src/b2bt/main.py:369
+   Location: src/b2bt/main.py:381
    More Info: https://bandit.readthedocs.io/en/latest/plugins/b603_subprocess_without_shell_equals_true.html
-368	        if shutil.which("what"):
-369	            results = subprocess.run(
-370	                ["what", "-q", command_full_path],
-371	                text=True,
-372	                capture_output=True,
-373	                check=False,
-374	            )
+380	        if shutil.which("what"):
+381	            results = subprocess.run(
+382	                ["what", "-q", command_full_path],
+383	                text=True,
+384	                capture_output=True,
+385	                check=False,
+386	            )
 
 --------------------------------------------------
 >> Issue: [B607:start_process_with_partial_path] Starting a process with a partial executable path
    Severity: Low   Confidence: High
-   Location: src/b2bt/main.py:377
+   Location: src/b2bt/main.py:389
    More Info: https://bandit.readthedocs.io/en/latest/plugins/b607_start_process_with_partial_path.html
-376	        if shutil.which("ident"):
-377	            results = subprocess.run(
-378	                ["ident", "-q", command_full_path],
-379	                text=True,
-380	                capture_output=True,
-381	                check=False,
-382	            )
+388	        if shutil.which("ident"):
+389	            results = subprocess.run(
+390	                ["ident", "-q", command_full_path],
+391	                text=True,
+392	                capture_output=True,
+393	                check=False,
+394	            )
 
 --------------------------------------------------
 >> Issue: [B603:subprocess_without_shell_equals_true] subprocess call - check for execution of untrusted input.
    Severity: Low   Confidence: High
-   Location: src/b2bt/main.py:377
+   Location: src/b2bt/main.py:389
    More Info: https://bandit.readthedocs.io/en/latest/plugins/b603_subprocess_without_shell_equals_true.html
-376	        if shutil.which("ident"):
-377	            results = subprocess.run(
-378	                ["ident", "-q", command_full_path],
-379	                text=True,
-380	                capture_output=True,
-381	                check=False,
-382	            )
+388	        if shutil.which("ident"):
+389	            results = subprocess.run(
+390	                ["ident", "-q", command_full_path],
+391	                text=True,
+392	                capture_output=True,
+393	                check=False,
+394	            )
 
 --------------------------------------------------
 >> Issue: [B602:subprocess_popen_with_shell_equals_true] subprocess call with shell=True identified, security issue.
    Severity: High   Confidence: High
-   Location: src/b2bt/main.py:454
+   Location: src/b2bt/main.py:466
    More Info: https://bandit.readthedocs.io/en/latest/plugins/b602_subprocess_popen_with_shell_equals_true.html
-453	    for line in pre_commands:
-454	        pre_results = subprocess.run(line, shell=True, check=False)
-455	        if pre_results.returncode != 0:
+465	    for line in pre_commands:
+466	        pre_results = subprocess.run(line, shell=True, check=False)
+467	        if pre_results.returncode != 0:
 
 --------------------------------------------------
 >> Issue: [B602:subprocess_popen_with_shell_equals_true] subprocess call with shell=True identified, security issue.
    Severity: High   Confidence: High
-   Location: src/b2bt/main.py:491
+   Location: src/b2bt/main.py:503
    More Info: https://bandit.readthedocs.io/en/latest/plugins/b602_subprocess_popen_with_shell_equals_true.html
-490	                line,
-491	                shell=True,
-492	                text=True,
-493	                input=one_line_input,
-494	                capture_output=True,
-495	                timeout=timeout,
-496	                check=False,
-497	            )
-498	        else:
-499	            results = subprocess.run(
+502	                line,
+503	                shell=True,
+504	                text=True,
+505	                input=one_line_input,
+506	                capture_output=True,
+507	                timeout=timeout,
+508	                check=False,
+509	            )
+510	        else:
+511	            results = subprocess.run(
 
 --------------------------------------------------
 >> Issue: [B602:subprocess_popen_with_shell_equals_true] subprocess call with shell=True identified, security issue.
    Severity: High   Confidence: High
-   Location: src/b2bt/main.py:501
+   Location: src/b2bt/main.py:513
    More Info: https://bandit.readthedocs.io/en/latest/plugins/b602_subprocess_popen_with_shell_equals_true.html
-500	                line,
-501	                shell=True,
-502	                text=True,
-503	                capture_output=True,
-504	                timeout=timeout,
-505	                check=False,
-506	            )
-507	    except subprocess.TimeoutExpired as status:
-508	        standard_output = ""
+512	                line,
+513	                shell=True,
+514	                text=True,
+515	                capture_output=True,
+516	                timeout=timeout,
+517	                check=False,
+518	            )
+519	    except subprocess.TimeoutExpired as status:
+520	        standard_output = ""
 
 --------------------------------------------------
 >> Issue: [B602:subprocess_popen_with_shell_equals_true] subprocess call with shell=True identified, security issue.
    Severity: High   Confidence: High
-   Location: src/b2bt/main.py:537
+   Location: src/b2bt/main.py:549
    More Info: https://bandit.readthedocs.io/en/latest/plugins/b602_subprocess_popen_with_shell_equals_true.html
-536	        post_results = subprocess.run(
-537	            line, shell=True, text=True, capture_output=True, check=False
-538	        )
-539	        if post_results.returncode != 0:
-
---------------------------------------------------
->> Issue: [B318:blacklist] Using xml.dom.minidom.parse to parse untrusted XML data is known to be vulnerable to XML attacks. Replace xml.dom.minidom.parse with its defusedxml equivalent function or make sure defusedxml.defuse_stdlib() is called
-   Severity: Medium   Confidence: High
-   Location: src/b2bt/main.py:645
-   More Info: https://bandit.readthedocs.io/en/latest/blacklists/blacklist_calls.html#b313-b320-xml-bad-minidom
-644	            try:
-645	                test_file = xml.dom.minidom.parse(filename)
-646	            except xml.parsers.expat.ExpatError as error:
+548	        post_results = subprocess.run(
+549	            line, shell=True, text=True, capture_output=True, check=False
+550	        )
+551	        if post_results.returncode != 0:
 
 --------------------------------------------------
 
 Code scanned:
-	Total lines of code: 718
+	Total lines of code: 758
 	Total lines skipped (#nosec): 0
 
 Run metrics:
 	Total issues (by severity):
 		Undefined: 0.0
-		Low: 6.0
-		Medium: 2.0
+		Low: 5.0
+		Medium: 1.0
 		High: 4.0
 	Total issues (by confidence):
 		Undefined: 0.0
 		Low: 0.0
 		Medium: 0.0
-		High: 12.0
+		High: 10.0
 Files skipped (0):
 *** Error code 1 (ignored)
