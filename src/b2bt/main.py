@@ -31,8 +31,8 @@ except ModuleNotFoundError:
     COLORAMA = False
 
 # Version string used by the what(1) and ident(1) commands:
-ID = "@(#) $Id: b2bt - back-to-back testing v1.1.1 (July 14, 2021) by Hubert Tournier $"
-__version__ = "1.1.1"
+ID = "@(#) $Id: b2bt - back-to-back testing v1.1.2 (September 26, 2021) by Hubert Tournier $"
+__version__ = "1.1.2"
 
 # Default parameters. Can be overcome by environment variables, then command line options
 DEFAULT_TIMEOUT = 120.0
@@ -48,6 +48,14 @@ parameters = {
     "No colors": False,
     "Timeout": DEFAULT_TIMEOUT,
 }
+
+
+################################################################################
+def initialize_debugging(program_name):
+    """Debugging set up"""
+    console_log_format = program_name + ": %(levelname)s: %(message)s"
+    logging.basicConfig(format=console_log_format, level=logging.DEBUG)
+    logging.disable(logging.INFO)
 
 
 ################################################################################
@@ -661,10 +669,8 @@ def remind_command(same_command, command):
 def main():
     """The program's main entry point"""
     program_name = os.path.basename(sys.argv[0])
-    console_log_format = program_name + ": %(levelname)s: %(message)s"
-    logging.basicConfig(format=console_log_format, level=logging.DEBUG)
-    logging.disable(logging.INFO)
 
+    initialize_debugging(program_name)
     process_environment_variables()
     arguments = process_command_line()
 
